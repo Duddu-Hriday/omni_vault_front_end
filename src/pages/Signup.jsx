@@ -57,6 +57,7 @@ const Signup = () => {
             if (response.ok) {
                 setSuccess(data.message);
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('email',email);
                 navigate('/dashboard');
                 // window.location.reload();
                 // console.log(data.token);
