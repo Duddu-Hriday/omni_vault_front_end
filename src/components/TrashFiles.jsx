@@ -11,7 +11,7 @@ const TrashFiles = () => {
     try {
       const token = sessionStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/api/files/trash-files", {
+      const response = await fetch("https://omni-vault-back-end.vercel.app/api/files/trash-files", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,7 +41,7 @@ const TrashFiles = () => {
       setLoadingFiles((prev) => ({ ...prev, [fileName]: true })); // Set loading for this file
       try {
         const token = sessionStorage.getItem("token");
-        const response = await fetch(`http://localhost:5000/api/files/deletefromtrash/${fileName}`, {
+        const response = await fetch(`https://omni-vault-back-end.vercel.app/api/files/deletefromtrash/${fileName}`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ const TrashFiles = () => {
       setLoadingFiles1((prev) => ({ ...prev, [fileName]: true })); // Set loading for this file
       try {
         const token = sessionStorage.getItem("token");
-        const response = await fetch(`http://localhost:5000/api/files/recoverfromtrash/${fileName}`, {
+        const response = await fetch(`https://omni-vault-back-end.vercel.app/api/files/recoverfromtrash/${fileName}`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,

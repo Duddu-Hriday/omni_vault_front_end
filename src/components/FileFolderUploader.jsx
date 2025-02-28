@@ -41,7 +41,7 @@ const FileFolderUploader = () => {
     try {
       const token = sessionStorage.getItem("token"); // Firebase token from sessionStorage
 
-      const response = await fetch("http://localhost:5000/api/upload/upload", {
+      const response = await fetch("https://omni-vault-back-end.vercel.app/api/upload/upload", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

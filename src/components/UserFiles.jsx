@@ -12,7 +12,7 @@ const UserFiles = () => {
     try {
       const token = sessionStorage.getItem("token");
 
-      const response = await fetch("http://localhost:5000/api/files/list-files", {
+      const response = await fetch("https://omni-vault-back-end.vercel.app/api/files/list-files", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ const UserFiles = () => {
   const handleView = async (fileName) => {
     setLoadingFile1((prev) => ({ ...prev, [fileName]: true }));
     const token = sessionStorage.getItem("token");
-    const viewUrl = `http://localhost:5000/api/files/download/${fileName}?view=true`;
+    const viewUrl = `https://omni-vault-back-end.vercel.app/api/files/download/${fileName}?view=true`;
 
     try {
       const response = await fetch(viewUrl, {
@@ -71,7 +71,7 @@ const UserFiles = () => {
   const handleDownload = async (fileName) => {
     setLoadingFile4((prev) => ({ ...prev, [fileName]: true }));
     const token = sessionStorage.getItem("token");
-    const downloadUrl = `http://localhost:5000/api/files/download/${fileName}`;
+    const downloadUrl = `https://omni-vault-back-end.vercel.app/api/files/download/${fileName}`;
 
     try {
       const response = await fetch(downloadUrl, {
@@ -106,7 +106,7 @@ const UserFiles = () => {
     setLoadingFile2((prev) => ({ ...prev, [fileName]: true }));
   
     const token = sessionStorage.getItem("token");
-    const deleteUrl = `http://localhost:5000/api/files/delete/${fileName}`;
+    const deleteUrl = `https://omni-vault-back-end.vercel.app/api/files/delete/${fileName}`;
   
     try {
       const response = await fetch(deleteUrl, {
@@ -140,7 +140,7 @@ const UserFiles = () => {
   
     setLoadingFile3((prev) => ({ ...prev, [fileName]: true }));
     const token = sessionStorage.getItem("token");
-    const trashUrl = `http://localhost:5000/api/files/trash/${fileName}`;
+    const trashUrl = `https://omni-vault-back-end.vercel.app/api/files/trash/${fileName}`;
   
     try {
       const response = await fetch(trashUrl, {

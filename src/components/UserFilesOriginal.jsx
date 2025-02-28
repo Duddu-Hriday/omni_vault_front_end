@@ -8,7 +8,7 @@ const UserFiles = () => {
   const fetchUserFiles = async () => {
     try {
       const token = sessionStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/files/list-files", {
+      const response = await fetch("https://omni-vault-back-end.vercel.app/api/files/list-files", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,14 +38,14 @@ const UserFiles = () => {
     let method = "GET";
 
     if (action === "view") {
-      url = `http://localhost:5000/api/files/download/${fileName}?view=true`;
+      url = `https://omni-vault-back-end.vercel.app/api/files/download/${fileName}?view=true`;
     } else if (action === "download") {
-      url = `http://localhost:5000/api/files/download/${fileName}`;
+      url = `https://omni-vault-back-end.vercel.app/api/files/download/${fileName}`;
     } else if (action === "delete") {
-      url = `http://localhost:5000/api/files/delete/${fileName}`;
+      url = `https://omni-vault-back-end.vercel.app/api/files/delete/${fileName}`;
       method = "DELETE";
     } else if (action === "trash") {
-      url = `http://localhost:5000/api/files/trash/${fileName}`;
+      url = `https://omni-vault-back-end.vercel.app/api/files/trash/${fileName}`;
       method = "POST";
     }
 
