@@ -16,7 +16,7 @@ const Home = () => {
         <div className="flex items-center justify-center h-screen p-6 bg-gray-100">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
         <div>
-            <h1 className="text-4xl font-bold mb-4">Welcome to Our Drive Clone</h1>
+            <h1 className="text-4xl font-bold mb-4">Welcome to Omni Vault</h1>
             <p className="text-lg mb-6">
                 This website allows you to store all kinds of files and folders, delete them, and recover them from trash.
             </p>
@@ -33,7 +33,7 @@ const Home = () => {
             <img
                 width="65%"
                 src="image.jpg"
-                alt="Drive Illustration"
+                alt="Omni Vault Illustration"
                 className="rounded-lg shadow-lg"
             />
         </div>

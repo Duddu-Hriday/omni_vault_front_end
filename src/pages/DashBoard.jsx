@@ -8,7 +8,7 @@ const DashBoard = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Google Drive Clone Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Omni Vault Dashboard</h1>
       <FileFolderUploader />
       <div className="mb-4">
         <button

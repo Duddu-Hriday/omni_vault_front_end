@@ -22,9 +22,9 @@ const Navbar = () => {
             <Link to="/">
                 <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-white">
-                        D
+                        O
                     </div>
-                    <span className="text-2xl font-semibold text-gray-800">Drive Clone</span>
+                    <span className="text-2xl font-semibold text-gray-800">Omni Vault</span>
                 </div>
             </Link>
 
