@@ -9,10 +9,11 @@ const Signup = () => {
 
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (token) {
             navigate('/dashboard'); //Redirect logged-in users
         }
@@ -28,6 +29,7 @@ const Signup = () => {
         e.preventDefault();
         setError('');
         setSuccess('');
+        setLoading(true);
 
         const { email, password, confirmPassword } = formData;
 
@@ -39,6 +41,7 @@ const Signup = () => {
 
         if (password !== confirmPassword) {
             setError('Passwords do not match.');
+            setLoading(false);
             return;
         }
 
@@ -56,7 +59,7 @@ const Signup = () => {
 
             if (response.ok) {
                 setSuccess(data.message);
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
                 navigate('/dashboard');
                 // window.location.reload();
                 // console.log(data.token);
@@ -67,6 +70,10 @@ const Signup = () => {
         } catch (err) {
             setError('An error occurred. Please try again.');
         }
+        finally {
+            setLoading(false);
+        }
+
     };
 
     return (
@@ -126,9 +133,20 @@ const Signup = () => {
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center"
+                    disabled={loading}
                 >
-                    Signup
+                    {loading ? (
+                        <>
+                            <svg
+                                className="animate-spin h-5 w-5 mr-2 border-t-2 border-white rounded-full"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            Signing up...
+                        </>
+                    ) : (
+                        'Signup'
+                    )}
                 </button>
             </form>
         </div>

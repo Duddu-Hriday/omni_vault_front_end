@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-const Signup = () => {
+
+const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
     
     const [error, setError] = useState('');
-
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         if (token) {
-            navigate('/dashboard'); //Redirect logged-in users
+            navigate('/dashboard'); // Redirect logged-in users
         }
     }, [navigate]);
-
 
     // Handle input changes
     const handleChange = (e) => {
@@ -29,15 +29,16 @@ const Signup = () => {
         e.preventDefault();
         setError('');
         setSuccess('');
+        setLoading(true);
 
         const { email, password } = formData;
 
         // Frontend Validation
         if (!email || !password) {
             setError('Please fill in all fields.');
+            setLoading(false);
             return;
         }
-
 
         try {
             // POST request to backend
@@ -53,16 +54,16 @@ const Signup = () => {
 
             if (response.ok) {
                 setSuccess(data.message);
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
                 navigate('/dashboard', { replace: true });
-                // window.location.reload();
-                // console.log(data.token);
-                setFormData({ email: '', password: '', confirmPassword: '' });
+                setFormData({ email: '', password: '' });
             } else {
                 setError(data.error || 'Login failed.');
             }
         } catch (err) {
             setError('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -106,16 +107,27 @@ const Signup = () => {
                     />
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit Button with Loading Animation */}
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition flex items-center justify-center"
+                    disabled={loading}
                 >
-                    Signup
+                    {loading ? (
+                        <>
+                            <svg
+                                className="animate-spin h-5 w-5 mr-2 border-t-2 border-white rounded-full"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            Logging in...
+                        </>
+                    ) : (
+                        'Login'
+                    )}
                 </button>
             </form>
         </div>
     );
 };
 
-export default Signup;
+export default Login;

@@ -7,12 +7,12 @@ const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         setIsLoggedIn(!!token); // Update login state based on token
     }, [location]);
     
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         setIsLoggedIn(false);
         navigate('/login');
     }

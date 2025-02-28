@@ -30,14 +30,16 @@ const FileFolderUploader = () => {
 
   // Upload function (reusable for both files and folders)
   const handleUpload = async (filesToUpload) => {
-    if (filesToUpload.length === 0) return;
+    if (filesToUpload.length === 0) {
+      alert('Upload files required')
+      return};
 
     setLoading(true); // Start loading
     const formData = new FormData();
     filesToUpload.forEach((file) => formData.append("files", file)); // "files" matches backend multer field
 
     try {
-      const token = localStorage.getItem("token"); // Firebase token from localStorage
+      const token = sessionStorage.getItem("token"); // Firebase token from sessionStorage
 
       const response = await fetch("http://localhost:5000/api/upload/upload", {
         method: "POST",
